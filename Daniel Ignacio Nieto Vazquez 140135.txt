@@ -1,0 +1,96 @@
+//Daniel Ignacio Nieto Vazquez 140135
+//ER = 1(00*)*
+/*Como la cadena siempre debe empezar con un 1 y solo una vez el programa valida
+eso en q0 ademas de si esta vacia. Se calcula la longitud para asi despues
+ir validando los siguientes caracteres de la cadena de uno en uno despues del 1 
+puede haber un 0 o muchos 0 asi que si encuentra un 1 va contando cuantos son, si encuentra por lo menos 
+un 1 se marcara como cadena invalida*/
+
+
+
+
+
+package automata;
+import java.util.Scanner;
+
+public class Automata {
+
+String cadena;
+boolean valida;
+
+    public Automata()
+    {
+        Scanner teclado=new Scanner(System.in);
+        System.out.printf("Ingrese Cadena: ");
+        cadena = teclado.next();
+        q0(cadena);
+ 
+    }
+    
+    public void q0(String cadena)
+    {
+        if( cadena.isEmpty() == true )
+        {
+            System.out.println("La cadena es vacia no valida");
+        }
+        else
+        {
+            if(cadena.charAt(0) != '1')
+            {
+                System.out.println("La cadena no es valida");
+            }
+            else
+            {
+                if(cadena.length()==1)
+                {
+                    System.out.println("La cadena es valida");
+                }
+                else
+                {
+                    q1(cadena);
+                }
+            }
+           
+        }
+        
+    }
+    
+    
+    public void q1(String cadena)
+    {
+       int cf = 0;
+        
+       for(int i=1; i<cadena.length(); i++)
+       {
+           if(cadena.charAt(i) == '0')
+           {
+               //valida = true;
+               
+           }
+           else
+           {
+               cf ++;
+               //valida = false;
+               
+           }
+       }
+        
+       if(cf > 0)
+       {
+           System.out.println("La cadena no es valida");
+       }
+       else
+       {
+           System.out.println("La cadena es valida");
+       }
+        
+    }
+
+   
+
+    public static void main(String[] args) {
+        Automata a = new Automata();
+    }
+    
+}
+
